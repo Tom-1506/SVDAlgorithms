@@ -10,20 +10,17 @@ public class SVDAlgorithms{
      * @return SVD of arrayIn or -1 if SVD doesn't exist
      */
     private static int quadratic(int[] arrayIn){
-        ArrayList<Integer> checked = new ArrayList<>();
         int count;
 
         for(int i = 0; i < arrayIn.length; i++){
-            if (checked.indexOf(arrayIn[i]) == -1){
-                count = 0;
-                for (int j = 0; j < arrayIn.length; j++){
-                    if (arrayIn[j] == arrayIn[i]){
-                        count++;
-                    }
+            count = 0;
+            for (int j = 0; j < arrayIn.length; j++){
+                if (arrayIn[j] == arrayIn[i]){
+                    count++;
                 }
-                if (count > arrayIn.length / 2){
-                    return arrayIn[i];
-                }
+            }
+            if (count > arrayIn.length / 2){
+                return arrayIn[i];
             }
         }
         System.out.println("No SVD exists");
@@ -57,6 +54,6 @@ public class SVDAlgorithms{
     public static void main(String[] args){
         int[] arr = {7, 7, 3, 6, 2, 7, 7};
 
-        System.out.println(logLinear(arr));
+        System.out.println(quadratic(arr));
     }
 }

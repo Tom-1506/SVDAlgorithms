@@ -1,4 +1,4 @@
-/*
+package hashing;/*
 Hash Table interface for the DS&A labs, week 1, semester 2. Note the emphasis here
 is to get you to implement the algorithms, not write fancy code (although feel free to
 do so! There are exercises for Programming 2 to engineer it more.

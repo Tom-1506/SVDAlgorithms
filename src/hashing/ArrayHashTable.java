@@ -77,6 +77,16 @@ public class ArrayHashTable extends HashTable{
                     if(i == table[hash].length-1){
                         return true;
                     }
+                    else{
+                        for(int j = i; j < table[hash].length-1; j++){
+                            table[hash][j] = table[hash][j+1];
+                            table[hash][j+1] = null;
+                        }
+                        return true;
+                    }
+                }
+                else{
+                    return false;
                 }
             }
         }
@@ -109,8 +119,20 @@ public class ArrayHashTable extends HashTable{
         int x = 456;
         arr.add(x);
 
+        for(int i = 0; i < n; i++){
+            numbers[i] = Math.abs(rand.nextInt());
+        }
+
+        for(int i : numbers) {
+            arr.add(i);
+        }
+
+        int y = 46;
+
         System.out.println("finished");
         System.out.println(arr.contains(x));
+        System.out.println(arr.remove(x));
+        System.out.println(arr.remove(y));
     }
 
 }

@@ -1,5 +1,6 @@
 package hashing;
 
+import java.util.HashSet;
 import java.util.Random;
 
 public class ArrayHashTable extends HashTable{
@@ -101,10 +102,52 @@ public class ArrayHashTable extends HashTable{
         return newArray;
     }
 
-    public static void main(String[] args) {
-        ArrayHashTable arr = new ArrayHashTable();
+    public static int[] generateArray(int dimension){
+        int[] arrayOut = new int[dimension];
 
-        int n = 50;
+        Random randNum = new Random();
+
+        for(int i = 0; i < arrayOut.length; i++){
+            arrayOut[i] = Math.abs(randNum.nextInt());
+        }
+        return arrayOut;
+    }
+
+    public static void timeAlgo(ArrayHashTable arr, int start, int iterSize, int numTests, int numIterations){
+        long startTime;
+        long endTime;
+        long average;
+        for(int i = 0; i < numTests; i++){
+            average = 0;
+
+            for(int j = 0; j < numIterations; j++){
+                int[] avgArray = generateArray(start + (iterSize * i));
+
+                startTime = System.nanoTime();
+                for(int number : avgArray){
+                    arr.add(number);
+                }
+                for(int number : avgArray){
+                    arr.remove(number);
+                }
+                endTime = System.nanoTime();
+
+                average += (endTime - startTime);
+            }
+            average = average/numIterations;
+            System.out.println(average);
+        }
+    }
+
+    public static void main(String[] args) {
+        HashSet<Integer> arr1 = new HashSet<Integer>();
+        ArrayHashTable arr2 = new ArrayHashTable();
+
+        //this function was altered slightly when testing either the hash table or hash set
+        timeAlgo(arr2, 15000, 5000, 8, 10000);
+
+        //testing for hash table
+        /*int n = 50;
         int[] numbers = new int[n];
 
         Random rand = new Random();
@@ -132,7 +175,7 @@ public class ArrayHashTable extends HashTable{
         System.out.println("finished");
         System.out.println(arr.contains(x));
         System.out.println(arr.remove(x));
-        System.out.println(arr.remove(y));
+        System.out.println(arr.remove(y));*/
     }
 
 }

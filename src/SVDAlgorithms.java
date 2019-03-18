@@ -115,11 +115,12 @@ public class SVDAlgorithms{
                 int[] avgArray = generateArray(start + (iterSize * i));
 
                 startTime = System.nanoTime();
-                linear(avgArray);
+                linear(avgArray); //this line was changed to test each function
                 endTime = System.nanoTime();
 
-                average += (endTime - startTime)/numIterations;
+                average += (endTime - startTime);
             }
+            average = average/numIterations;
             System.out.println(average);
         }
     }
@@ -128,8 +129,6 @@ public class SVDAlgorithms{
         int[] arr = {3,3,4,4,4};
 
         timeAlgo(5000, 5000, 15, 10000);
-
-        System.out.println(logLinear(arr));
 
     }
 }
